@@ -1,0 +1,62 @@
+import { LocationAirData } from '../types/pollution';
+import { calculateInversionDynamics, generateDiurnalSmogForecast } from '../services/calculations/inversionEngine';
+
+export const PRESET_LOCATIONS: LocationAirData[] = [
+  {
+    id: 'delhi-ncr',
+    cityName: 'Delhi / NCR',
+    region: 'Northern Plains',
+    country: 'India',
+    timestamp: '2026-11-22T08:00:00Z',
+    aqi: 435,
+    category: 'severe',
+    pollutants: {
+      pm25: 325,
+      pm10: 480,
+      no2: 85,
+      o3: 24,
+      co: 3.8,
+      so2: 18,
+    },
+    inversion: calculateInversionDynamics(8, 9, 3, 325),
+    hourlyForecast: generateDiurnalSmogForecast(325, 9, 3),
+  },
+  {
+    id: 'salt-lake-valley',
+    cityName: 'Salt Lake City',
+    region: 'Utah Valley Basin',
+    country: 'United States',
+    timestamp: '2026-11-22T08:00:00Z',
+    aqi: 168,
+    category: 'unhealthy',
+    pollutants: {
+      pm25: 88,
+      pm10: 105,
+      no2: 42,
+      o3: 18,
+      co: 1.4,
+      so2: 4,
+    },
+    inversion: calculateInversionDynamics(8, -2, 5, 88),
+    hourlyForecast: generateDiurnalSmogForecast(88, -2, 5),
+  },
+  {
+    id: 'krakow-malopolska',
+    cityName: 'Kraków',
+    region: 'Lesser Poland',
+    country: 'Poland',
+    timestamp: '2026-11-22T08:00:00Z',
+    aqi: 185,
+    category: 'unhealthy',
+    pollutants: {
+      pm25: 112,
+      pm10: 165,
+      no2: 54,
+      o3: 12,
+      co: 2.1,
+      so2: 22,
+    },
+    inversion: calculateInversionDynamics(8, 1, 4, 112),
+    hourlyForecast: generateDiurnalSmogForecast(112, 1, 4),
+  },
+];
